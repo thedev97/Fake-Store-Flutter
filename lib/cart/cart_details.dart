@@ -1,6 +1,6 @@
-import 'package:fake_store_v1/cart/provider/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:fake_store_v1/cart/provider/cart_provider.dart';
 import 'package:fake_store_v1/cart/widgets/cart_badge_icon.dart';
 import 'package:fake_store_v1/cart/widgets/cart_list_item.dart';
 import 'package:fake_store_v1/cart/model/cart_item.dart';
@@ -21,7 +21,7 @@ class CartDetails extends StatelessWidget {
               (BuildContext context, CartProvider cartProvider, Widget? child) {
             final List<CartItem> cartItems = cartProvider.cartItems;
             return Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: <Widget>[
                   Expanded(

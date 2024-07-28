@@ -83,8 +83,7 @@ class FSImageView extends StatelessWidget {
         case ImageType.network:
           return Image.network(
             imagePath!,
-            height: height,
-            width: width,
+            scale: 3.5,
             fit: fit ?? BoxFit.cover,
             loadingBuilder: (BuildContext context, Widget child,
                 ImageChunkEvent? progress) {

@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fake_store_v1/cart/model/cart_item.dart';
 import 'package:fake_store_v1/cart/provider/cart_provider.dart';
 import 'package:fake_store_v1/cart/widgets/quantity_item.dart';
 import 'package:fake_store_v1/shared/utils/styles/font_styles.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CartListItem extends StatelessWidget {
   const CartListItem({super.key, required this.cartItem, required this.index});
@@ -21,12 +21,13 @@ class CartListItem extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: Colors.white,
+        border: Border.all(color: Colors.black, width: 1),
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 1.0,
-            offset: const Offset(0, 1),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: const Offset(1, 1),
           ),
         ],
       ),
