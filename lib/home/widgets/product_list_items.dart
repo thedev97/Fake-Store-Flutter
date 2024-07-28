@@ -6,37 +6,40 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ProductListItems extends StatelessWidget {
-  final Future<List<Product>> productFuture;
-
   const ProductListItems({required this.productFuture, super.key});
+
+  final Future<List<Product>> productFuture;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Product>>(
       future: productFuture,
-      builder: (BuildContext context, snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator(color: Colors.black,strokeAlign: 1,));
+          return const Center(
+              child: CircularProgressIndicator(
+            color: Colors.black,
+            strokeAlign: 1,
+          ));
         } else if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasData) {
-            final data = snapshot.data!;
+            final List<Product> data = snapshot.data!;
             return GridView.builder(
               padding: const EdgeInsets.all(16.0),
               itemCount: data.length,
               shrinkWrap: true,
               physics: const ScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 212,
-                childAspectRatio: 3 / 6,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
-              itemBuilder: (context, index) {
-                var product = data[index];
+              itemBuilder: (BuildContext context, int index) {
+                Product product = data[index];
                 return GestureDetector(
                   onTap: () {
                     context.push(
-                        "${AppRoutes.product}/${AppRoutes.productList}/${AppRoutes.productDetails}",
+                        '${AppRoutes.product}/${AppRoutes.productList}/${AppRoutes.productDetails}',
                         extra: product);
                   },
                   child: ProductGridItem(product: product),

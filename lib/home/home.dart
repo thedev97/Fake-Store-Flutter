@@ -1,13 +1,9 @@
-import 'package:fake_store_v1/cart/provider/cart_provider.dart';
-import 'package:fake_store_v1/home/model/product.dart';
-import 'package:fake_store_v1/home/widgets/productlist_items.dart';
-import 'package:fake_store_v1/networks/api_service.dart';
-import 'package:fake_store_v1/routes/app_routes_const.dart';
-import 'package:fake_store_v1/shared/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:badges/badges.dart' as badges;
+import 'package:fake_store_v1/home/model/product.dart';
+import 'package:fake_store_v1/shared/widgets/app_bar/app_bar_builder.dart';
+import 'package:fake_store_v1/home/widgets/product_list_items.dart';
+import 'package:fake_store_v1/home/widgets/cart_items.dart';
+import 'package:fake_store_v1/networks/api_service.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -35,7 +31,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, cart: _cartItems()),
+      appBar: buildAppBar(context, cart: const CartItems()),
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: _refreshProducts,
@@ -44,34 +40,4 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-
-  // Cart Items
-  Widget _cartItems() => Row(
-    children: [
-      Consumer<CartProvider>(
-        builder: (context, cartProvider, child) {
-          return badges.Badge(
-            badgeColor: Colors.red,
-            position: badges.BadgePosition.bottomEnd(bottom: 1, end: 1),
-            badgeContent: Text(
-              cartProvider.cartCount.toString(),
-              style: const TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            child: IconButton(
-              color: Colors.black,
-              icon: const Icon(Icons.shopping_cart),
-              iconSize: 25,
-              onPressed: () => context.push("${AppRoutes.product}/${AppRoutes.cart}"),
-            ),
-          );
-        },
-      ),
-      const SizedBox(
-        width: 5,
-      ),
-    ],
-  );
 }
-

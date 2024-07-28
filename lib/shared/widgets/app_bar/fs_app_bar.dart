@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
 class FSAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const FSAppBar(
-      {super.key,
-      this.height,
-      this.styleType,
-      this.leadingWidth,
-      this.leading,
-      this.title,
-      this.centerTitle,
-      this.actions,
-      this.width,
-      this.isDefaultStyle});
+  const FSAppBar({
+    super.key,
+    this.height,
+    this.styleType,
+    this.leadingWidth,
+    this.leading,
+    this.title,
+    this.centerTitle,
+    this.actions,
+    this.width,
+    this.isDefaultStyle,
+  });
 
   final double? height;
   final double? width;
@@ -27,28 +28,29 @@ class FSAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 2,
-      toolbarHeight: height ?? 50.0,
+      toolbarHeight: height ?? kToolbarHeight,
       automaticallyImplyLeading: true,
       backgroundColor: Colors.transparent,
       flexibleSpace: isDefaultStyle == true ? _getDefaultStyle() : _getStyle(),
-      leadingWidth: leadingWidth ?? 50,
+      leadingWidth: leadingWidth ?? kToolbarHeight - 16,
       leading: leading,
       title: title,
-      titleSpacing: 20,
+      titleSpacing: kRadialReactionRadius,
       centerTitle: centerTitle ?? false,
       actions: actions,
     );
   }
 
   @override
-  Size get preferredSize => Size(width ?? 60.0, height ?? 60.0);
+  Size get preferredSize =>
+      Size(width ?? double.infinity, height ?? kToolbarHeight);
 
   Widget? _getStyle() {
     switch (styleType) {
       case Style.bgFill:
         return const SizedBox(
-          height: 60,
-          width: double.maxFinite,
+          height: kToolbarHeight,
+          width: double.infinity,
         );
       default:
         return null;
@@ -60,7 +62,7 @@ class FSAppBar extends StatelessWidget implements PreferredSizeWidget {
       case Style.bgFill:
         return const SizedBox(
           height: 0,
-          width: double.maxFinite,
+          width: double.infinity,
         );
       default:
         return null;

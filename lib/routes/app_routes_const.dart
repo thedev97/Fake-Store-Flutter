@@ -1,10 +1,7 @@
 class AppRoutes {
-  // Splash
-  static const splash = '/splash';
-
-  // Product Routes
-  static const product = '/product';
-  static const productList = 'productList';
-  static const productDetails = 'productDetails';
-  static const cart = 'cart';
+  static const String splash = '/splash';
+  static const String product = '/product';
+  static const String productList = 'productList';
+  static const String productDetails = 'productDetails';
+  static const String cart = 'cart';
 }

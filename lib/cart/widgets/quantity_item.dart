@@ -2,10 +2,6 @@ import 'package:fake_store_v1/shared/utils/styles/font_styles.dart';
 import 'package:flutter/material.dart';
 
 class QuantityItem extends StatelessWidget {
-  final int quantity;
-  final void Function() onIncrease;
-  final void Function() onDecrease;
-
   const QuantityItem({
     super.key,
     required this.quantity,
@@ -13,10 +9,14 @@ class QuantityItem extends StatelessWidget {
     required this.onDecrease,
   });
 
+  final int quantity;
+  final void Function() onIncrease;
+  final void Function() onDecrease;
+
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
+      children: <Widget>[
         _buildActionButton(
           icon: Icons.add,
           onPressed: onIncrease,
@@ -45,7 +45,7 @@ class QuantityItem extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: Colors.black,
-        boxShadow: const [
+        boxShadow: const <BoxShadow>[
           BoxShadow(
             color: Colors.white,
             offset: Offset(1.0, 1.0),

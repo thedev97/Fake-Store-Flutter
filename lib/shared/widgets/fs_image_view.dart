@@ -1,23 +1,7 @@
-import 'package:fake_store_v1/shared/utils/image_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:fake_store_v1/shared/utils/image_constant.dart';
 
 class FSImageView extends StatelessWidget {
-  ///[imagePath] is required parameter for showing image
-  final String? imagePath;
-
-  final double? height;
-  final double? width;
-  final Color? color;
-  final BoxFit? fit;
-  final String? placeHolder;
-  final Alignment? alignment;
-  final VoidCallback? onTap;
-  final EdgeInsetsGeometry? margin;
-  final BorderRadius? radius;
-  final BoxBorder? border;
-
-  ///a [FSImageView] it can be used for showing any type of images
-  /// it will shows the placeholder image if image is not found on network image
   const FSImageView({
     super.key,
     this.imagePath,
@@ -32,6 +16,19 @@ class FSImageView extends StatelessWidget {
     this.border,
     this.placeHolder = FSImage.imageNotFound,
   });
+
+  final String? imagePath;
+
+  final double? height;
+  final double? width;
+  final Color? color;
+  final BoxFit? fit;
+  final String? placeHolder;
+  final Alignment? alignment;
+  final VoidCallback? onTap;
+  final EdgeInsetsGeometry? margin;
+  final BorderRadius? radius;
+  final BoxBorder? border;
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +50,7 @@ class FSImageView extends StatelessWidget {
     );
   }
 
-  ///build the image with border radius
-  _buildCircleImage() {
+  dynamic _buildCircleImage() {
     if (radius != null) {
       return ClipRRect(
         borderRadius: radius ?? BorderRadius.zero,
@@ -65,8 +61,7 @@ class FSImageView extends StatelessWidget {
     }
   }
 
-  ///build the image with border and border radius style
-  _buildImageWithBorder() {
+  Widget _buildImageWithBorder() {
     if (border != null) {
       return Container(
         decoration: BoxDecoration(
@@ -91,14 +86,20 @@ class FSImageView extends StatelessWidget {
             height: height,
             width: width,
             fit: fit ?? BoxFit.cover,
-            loadingBuilder: (context, child, progress) {
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? progress) {
               if (progress == null) {
                 return child;
               } else {
-                return const Center(child: CircularProgressIndicator(color: Colors.black,strokeAlign: 1,));
+                return const Center(
+                    child: CircularProgressIndicator(
+                  color: Colors.black,
+                  strokeAlign: 1,
+                ));
               }
             },
-            errorBuilder: (context, error, stackTrace) {
+            errorBuilder:
+                (BuildContext context, Object error, StackTrace? stackTrace) {
               return Image.asset(
                 placeHolder!,
                 height: height,
@@ -135,4 +136,3 @@ extension ImageTypeExtension on String {
 }
 
 enum ImageType { svg, png, network }
-

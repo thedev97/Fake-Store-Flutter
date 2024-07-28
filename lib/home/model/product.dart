@@ -1,21 +1,4 @@
-class ProductList {
-  List<Product>? data;
-
-  ProductList(this.data);
-
-  ProductList.fromJson(List<dynamic> json) {
-    data = json.map((productJson) => Product.fromJson(productJson)).toList();
-  }
-}
-
 class Product {
-  int? id;
-  String? title;
-  double? price;
-  String? description;
-  String? category;
-  String? image;
-
   Product(
       {this.id,
       this.title,
@@ -32,6 +15,13 @@ class Product {
     category = json['category'];
     image = json['image'];
   }
+
+  int? id;
+  String? title;
+  double? price;
+  String? description;
+  String? category;
+  String? image;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

@@ -1,6 +1,6 @@
-import 'package:fake_store_v1/shared/utils/styles/font_styles.dart';
-import 'package:fake_store_v1/shared/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:fake_store_v1/shared/utils/styles/font_styles.dart';
+import 'package:fake_store_v1/shared/widgets/app_bar/app_bar_builder.dart';
 
 class NotFoundScreen extends StatelessWidget {
   const NotFoundScreen({super.key});

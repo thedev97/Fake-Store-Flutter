@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'base_button.dart';
+import 'package:fake_store_v1/shared/widgets/button/base_button.dart';
 
 class FSElevatedButton extends FSBaseButton {
   const FSElevatedButton({
@@ -44,7 +44,7 @@ class FSElevatedButton extends FSBaseButton {
           onPressed: isDisabled ?? false ? null : onPressed ?? () {},
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
               leftIcon ?? Container(),
               SizedBox(width: leftIcon != null ? 8 : 0),
               Padding(

@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 
 class CartProvider extends ChangeNotifier {
-  final List<CartItem> _cartItems = [];
+  final List<CartItem> _cartItems = <CartItem>[];
 
   List<CartItem> get cartItems => _cartItems;
 
   void addToCart(Product product, int quantity, String selectedVariant) {
-    var existingCartItem = _cartItems.firstWhereOrNull(
-      (item) => item.product.id == product.id,
+    CartItem? existingCartItem = _cartItems.firstWhereOrNull(
+      (CartItem item) => item.product.id == product.id,
     );
 
     if (existingCartItem != null) {
@@ -22,30 +22,15 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  int getProductQuantity(int productId) {
-    int quantity = 0;
-    for (CartItem item in _cartItems) {
-      if (item.product.id == productId) {
-        quantity += item.quantity;
-      }
-    }
-    return quantity;
-  }
-
   int get cartCount {
-    return _cartItems.fold(0, (sum, item) => sum + item.quantity);
+    return _cartItems.fold(0, (int sum, CartItem item) => sum + item.quantity);
   }
 
   double get totalPrice {
     return _cartItems.fold(
-        0.0, (sum, item) => sum + (item.product.price! * item.quantity));
-  }
-
-  void updateCartItemQuantity(int index, int newQuantity) {
-    if (index >= 0 && index < _cartItems.length) {
-      _cartItems[index].quantity = newQuantity;
-      notifyListeners();
-    }
+        0.0,
+        (double sum, CartItem item) =>
+            sum + (item.product.price! * item.quantity));
   }
 
   void increaseCartItemQuantity(int index) {
@@ -74,12 +59,9 @@ class CartProvider extends ChangeNotifier {
     }
   }
 
+  // Clear all cart items
   void clearCart() {
     _cartItems.clear();
     notifyListeners();
-  }
-
-  List<CartItem> getCartItemsList() {
-    return List<CartItem>.from(_cartItems);
   }
 }
