@@ -18,7 +18,7 @@ o Cart Screen: Display the list of added products with the total price and optio
 
 ## Package Used
 
-o badges: ^2.0.3 -> Use the Badge widget to show the count of cart items
+o badges: ^3.1.2 -> Use the Badge widget to show the count of cart items
 o provider: ^6.1.2 -> Manage the application state 
 o http: ^1.2.2  -> Manage the network requests
 o cached_network_image: ^3.3.1 -> Fetch the newtork images from server and show it in ui
