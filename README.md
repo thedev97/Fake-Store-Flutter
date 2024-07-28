@@ -87,7 +87,7 @@ lib/
 └── main.dart
 
 
-## Followed Linter Rules 
+## Follow Linter Rules 
 o Rules:
   avoid_print: Avoid print calls in production code.
   prefer_single_quotes: Only use double quotes for strings containing single quotes.

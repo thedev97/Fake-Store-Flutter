@@ -8,6 +8,7 @@ class CartProvider extends ChangeNotifier {
 
   List<CartItem> get cartItems => _cartItems;
 
+  // Add to cart
   void addToCart(Product product, int quantity, String selectedVariant) {
     CartItem? existingCartItem = _cartItems.firstWhereOrNull(
       (CartItem item) => item.product.id == product.id,
@@ -22,10 +23,12 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Cart items count
   int get cartCount {
     return _cartItems.fold(0, (int sum, CartItem item) => sum + item.quantity);
   }
 
+  // Total cart price
   double get totalPrice {
     return _cartItems.fold(
         0.0,
@@ -33,6 +36,7 @@ class CartProvider extends ChangeNotifier {
             sum + (item.product.price! * item.quantity));
   }
 
+  // Increase item
   void increaseCartItemQuantity(int index) {
     if (index >= 0 && index < _cartItems.length) {
       _cartItems[index].quantity++;
@@ -40,6 +44,7 @@ class CartProvider extends ChangeNotifier {
     }
   }
 
+  // Reduce item
   void decreaseCartItemQuantity(int index) {
     if (index >= 0 && index < _cartItems.length) {
       if (_cartItems[index].quantity > 1) {
@@ -52,6 +57,7 @@ class CartProvider extends ChangeNotifier {
     }
   }
 
+  // Remove cart item
   void removeCartItem(int index) {
     if (index >= 0 && index < _cartItems.length) {
       _cartItems.removeAt(index);
